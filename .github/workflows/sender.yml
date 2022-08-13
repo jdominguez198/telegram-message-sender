@@ -1,0 +1,16 @@
+name: "sender"
+on:
+  repository_dispatch:
+    types:
+      - sender
+jobs:
+  automation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: addnab/docker-run-action@v3
+        with:
+          image: jdominguez198/telegram-message-sender
+          run: |
+            python send_message.py > /dev/null 2>&1

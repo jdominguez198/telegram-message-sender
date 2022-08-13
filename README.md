@@ -56,3 +56,9 @@ Once you set the Session value into the variable, you'll be ready to send messag
 To send the message you've been set in the environment file, you only have to type the following command:
 
     docker run -it --rm --env-file=.env <your_github_user>/telegram-message-sender python send_message.py
+
+## Extra
+
+You can use this repo also to send messages from external services or cronjobs to schedule messages by the Github Actions.
+
+Check the file under .github/workflows to see how to do it!
