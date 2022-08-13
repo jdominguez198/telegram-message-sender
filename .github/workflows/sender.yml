@@ -4,7 +4,7 @@ on:
     types:
       - sender
 jobs:
-  automation:
+  sender_message:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -12,5 +12,12 @@ jobs:
       - uses: addnab/docker-run-action@v3
         with:
           image: jdominguez198/telegram-message-sender
+          options:
+            -e TELEGRAM_API_ID=${{ secrets.telegram_api_id }}
+            -e TELEGRAM_API_HASH=${{ secrets.telegram_api_hash }}
+            -e TELEGRAM_API_SESSION=${{ secrets.telegram_api_session }}
+            -e TELEGRAM_USER_TO=${{ secrets.telegram_user_to }}
+            -e TELEGRAM_MESSAGE=${{ secrets.telegram_message }}
+            -e SLEEP_RANDOM_SECONDS_BEFORE_MESSAGE=${{ secrets.sleep_random_seconds_before_message }}
           run: |
-            python send_message.py > /dev/null 2>&1
+            python /usr/src/app/send_message.py > /dev/null 2>&1
